@@ -5,7 +5,7 @@
 
 Rock Paper Scissors game created as part of [The Odin Project](https://www.theodinproject.com/) course.
 
-Simple **console-based** Rock Paper Scissors game made completely using **JavaScript** built to practice **JavaScript basics**(functions, if-else, loops..).
+Simple **console-based** Rock Paper Scissors game made completely using **JavaScript**. Built to practice **JavaScript basics** like functions, for loops, if-else statements.
 </div>
 <br>
 
