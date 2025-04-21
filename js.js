@@ -8,7 +8,7 @@ function getComputerChoice() {
     } else {
         return "scissors";
     }
-}
+};
 
 // Function to get user choice using prompt.
 function getHumanChoice() {
@@ -18,43 +18,101 @@ function getHumanChoice() {
     } else {
         alert("Error! Your choice is: 1. Rock 2. Paper 3. Scissors");
     }
-}
+};
 
 let humanScore = 0; // Variable to track human score
 let computerScore = 0; // Variable to track computer score
-
+let humanbtn;
 // Function to play an whole round of game, comparing human and computer choice and choosing winner of the round.
 function playRound(humanChoice, computerChoice) {
-    const human = getHumanChoice();
     const computer = getComputerChoice();
 
-    if (human == "paper" && computer == "rock") {
+
+
+    if (humanbtn == "paper" && computer == "rock") {
         humanScore++;
-        console.log(`${human} beats ${computer}! You Won!`)
-        console.log(`Human ${humanScore} : ${computerScore} Computer`)
-    } else if (human == "rock" && computer == "scissors") {
+        para.textContent = `${humanbtn} beats ${computer}! You Won!`;
+        resultpara.textContent = `Human ${humanScore} : ${computerScore} Computer`;
+    } else if (humanbtn == "rock" && computer == "scissors") {
         humanScore++;
-        console.log(`${human} beats ${computer}! You Won!`)
-        console.log(`Human ${humanScore} : ${computerScore} Computer`)
-    } else if (human == "scissors" && computer == "paper") {
+        para.textContent = `${humanbtn} beats ${computer}! You Won!`;
+        resultpara.textContent = `Human ${humanScore} : ${computerScore} Computer`;
+    } else if (humanbtn == "scissors" && computer == "paper") {
         humanScore++;
-        console.log(`${human} beats ${computer}! You Won!`)
-        console.log(`Human ${humanScore} : ${computerScore} Computer`)
-    } else if (human == computer) {
-        console.log(`It's draw!`)
-        console.log(`Human ${humanScore} : ${computerScore} Computer`)
+        para.textContent = `${humanbtn} beats ${computer}! You Won!`;
+        resultpara.textContent = `Human ${humanScore} : ${computerScore} Computer`;
+    } else if (humanbtn == computer) {
+        para.textContent = `It's draw!`;
+        resultpara.textContent = `Human ${humanScore} : ${computerScore} Computer`;
     } else {
         computerScore++;
-        console.log(`${computer} beats ${human}! You Lost!`)
-        console.log(`Human ${humanScore} : ${computerScore} Computer`)
+        para.textContent = `${computer} beats ${humanbtn}! You Lost!`;
+        resultpara.textContent = `Human ${humanScore} : ${computerScore} Computer`;
     }
-}
 
-// Function to play 5 rounds of the game using for loop.
-function playGame() { 
-    for (let i = 0; i < 5; i++) {
-            playRound();
-            console.log(`Round ${i + 1}`);
-            console.log(`--------------`);
+    if (humanScore === 5) {
+        para.textContent = `HUMAN IS THE WINNER!`
+        para.style.color = "green";
+        para.style.fontSize = "15px";
+        para.style.fontWeight = "800";
+        btnrock.disabled = true;
+        btnpaper.disabled = true;
+        btnscissors.disabled = true;
+        const resetbtn = document.createElement("button");
+        result.appendChild(resetbtn);
+        resetbtn.textContent = "NEW GAME";
+        resetbtn.addEventListener("click", () => {window.location.reload();});
+    } else if (computerScore === 5) {
+        para.textContent = `COMPUTER IS THE WINNER!`
+        para.style.color = "green";
+        para.style.fontSize = "15px";
+        para.style.fontWeight = "800";
+        btnrock.disabled = true;
+        btnpaper.disabled = true;
+        btnscissors.disabled = true;
+        const resetbtn = document.createElement("button");
+        result.appendChild(resetbtn);
+        resetbtn.textContent = "NEW GAME";
+        resetbtn.addEventListener("click", () => {window.location.reload();});
     }
-}
+};
+
+const content = document.querySelector(".content");
+const btnrock = document.querySelector(".btn-rock");
+const btnpaper = document.querySelector(".btn-paper");
+const btnscissors = document.querySelector(".btn-scissors");
+
+btnrock.textContent = "Rock";
+btnrock.addEventListener("click", () => {
+    humanbtn = "rock";
+    playRound(humanbtn, getComputerChoice());
+});
+
+btnpaper.textContent = "Paper";
+btnpaper.addEventListener("click", () => {
+    humanbtn = "paper";
+    playRound(humanbtn, getComputerChoice());
+});
+
+btnscissors.textContent = "Scissors";
+btnscissors.addEventListener("click", () => {
+    humanbtn = "scissors";
+    playRound(humanbtn, getComputerChoice());
+});
+
+const result = document.querySelector("#result");
+const para = document.createElement("p");
+para.textContent = "";
+const resultpara = document.createElement("p");
+resultpara.textContent = "";
+result.appendChild(para);
+result.appendChild(resultpara);
+
+// // Function to play 5 rounds of the game using for loop.
+// function playGame() { 
+//     for (let i = 0; i < 5; i++) {
+//             playRound();
+//             console.log(`Round ${i + 1}`);
+//             console.log(`--------------`);
+//     }
+// }
